@@ -1,17 +1,21 @@
 import React, { useEffect, useState } from 'react'
-import { Content, Header, NaversList, NaversContent } from './styles'
-
 import { AiOutlineLoading3Quarters as LoadingIcon } from 'react-icons/ai'
+import { useHistory } from 'react-router-dom'
 
+// Components
 import Card from '../../components/Card'
+import Button from '../../components/Button'
+
+// Assets & Styles
+import { Content, Header, NaversList, NaversContent } from './styles'
 
 // Services
 import { index } from '../../services/navers'
-import Button from '../../components/Button'
 
 function Dashboard() {
   const [navers, setNavers] = useState([])
   const [loading, setLoading] = useState(true)
+  const history = useHistory()
 
   useEffect( ()=> {
     async function requestApi(){
@@ -26,7 +30,7 @@ function Dashboard() {
       <Content>
         <Header>
           <h1>Navers</h1>
-          <Button type="button">Adicionar Naver</Button>
+          <Button type="button" onClick={() => history.push('/create')}>Adicionar Naver</Button>
         </Header>
         <NaversContent>
           {
