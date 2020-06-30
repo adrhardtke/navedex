@@ -7,6 +7,9 @@ import Rollback from '../../components/Rollback'
 import InputWithLabel from '../../components/InputWithLabel'
 import Button from '../../components/Button'
 
+import 'react-responsive-modal/styles.css';
+import { Modal } from 'react-responsive-modal';
+
 // Assets & Styles
 import { ButtonText, Content, Form } from './styles';
 
@@ -16,6 +19,7 @@ import { create } from '../../services/navers'
 function Create() {
     const [ loading, setLoading ] = useState(false)
     const [ error, setError ] = useState(false)
+    const [ open, setOpen ] = useState(false)
     
     const [ name, setName ] = useState('')
     const [ job_role, setJob_role ] = useState('')
@@ -35,6 +39,15 @@ function Create() {
         return reverse
     }
 
+    const onOpenModal = () => {
+        setOpen(true)
+    }
+     
+    const onCloseModal = () => {
+       setOpen(false)
+       history.push('/dashboard')
+    }
+
     const handleSubmit = async e => {
         e.preventDefault()
         setLoading(true)
@@ -49,8 +62,8 @@ function Create() {
         }
 
         try {
-            const response = await create(naver)
-            history.push('/dashboard')
+            await create(naver)
+            onOpenModal()
         } catch(e){
             setLoading(false)
             setError(true)
@@ -139,6 +152,12 @@ function Create() {
                 {
                     error && <p className="error">Ops! Algo deu errado, verifique os campos novamente.</p>
                 }
+            <Modal open={open} onClose={onCloseModal} center>
+                <div className="modal-content">
+                    <h4>Naver Criado</h4>
+                    <p>Naver criado com sucesso!</p>
+                </div>
+            </Modal>
       </Content>
   )
 }

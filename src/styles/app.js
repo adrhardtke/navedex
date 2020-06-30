@@ -39,4 +39,17 @@ export default createGlobalStyle`
         font-weight: 600;
     }
 
+    .modal-content {
+        margin: 2em;
+        min-width: 600px;
+
+        h4 {
+            font-size: 1.5em;
+        }
+
+        p {
+            margin-top: 1.5em;
+        }
+    }
+
 `
