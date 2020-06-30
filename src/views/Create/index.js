@@ -22,8 +22,23 @@ function Create() {
 
     const history = useHistory()
 
+    const reverseDate = date => {
+        const reverse = date.split('-').reverse().join('/')
+        return reverse
+    }
+
     const handleSubmit = e => {
         e.preventDefault()
+        const naver = {
+            job_role,
+            admission_date: reverseDate(admission_date),
+            birthdate: reverseDate(birthdate),
+            project,
+            name,
+            url,
+        }
+        console.log(naver)
+
         setLoading(true)
     }
 
@@ -39,10 +54,7 @@ function Create() {
                         placeholder="Nome"
                         id={'nome'}
                         value={name}
-                        onChange={(e) => {
-                            console.log(name)
-                            setName(e.target.value)
-                        }}
+                        onChange={(e) => setName(e.target.value)}
                         width={'100%'}
                     />
 
@@ -57,7 +69,7 @@ function Create() {
                     />
 
                     <InputWithLabel
-                        type="number"
+                        type="date"
                         label="Idade"
                         placeholder="Idade"
                         id={'idade'}
@@ -67,7 +79,7 @@ function Create() {
                     />
 
                     <InputWithLabel
-                        type="number"
+                        type="date"
                         label="Tempo de Empresa"
                         placeholder="Tempo de Empresa"
                         id={'temp_emp'}
