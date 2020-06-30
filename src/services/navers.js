@@ -11,3 +11,8 @@ export const index = async () => {
     const response = await api.get('/navers', barearToken())
     return response
 }
+
+export const create = async (naver) => {
+    const response = await api.post('/navers', naver, barearToken())
+    return response
+}

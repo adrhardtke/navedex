@@ -10,6 +10,9 @@ import Button from '../../components/Button'
 // Assets & Styles
 import { ButtonText, Content, Form } from './styles';
 
+// Service
+import { create } from '../../services/navers'
+
 function Create() {
     const [ loading, setLoading ] = useState(false)
     
@@ -27,8 +30,10 @@ function Create() {
         return reverse
     }
 
-    const handleSubmit = e => {
+    const handleSubmit = async e => {
         e.preventDefault()
+        setLoading(true)
+
         const naver = {
             job_role,
             admission_date: reverseDate(admission_date),
@@ -37,9 +42,12 @@ function Create() {
             name,
             url,
         }
-        console.log(naver)
 
-        setLoading(true)
+        const response = await create(naver)
+
+        if(response){
+            history.push('/dashboard')
+        }
     }
 
   return (
