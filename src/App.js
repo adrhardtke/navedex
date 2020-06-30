@@ -1,10 +1,13 @@
 import React from 'react';
+import { Login } from './views'
+import GlobalStyle from './styles/app'
 
 function App() {
   return (
-    <div className="App">
-      <h1>oi</h1>
-    </div>
+    <>
+      <Login />
+      <GlobalStyle />
+    </>
   );
 }
 

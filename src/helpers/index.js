@@ -1,0 +1,1 @@
+export const pxToEm = pxValue => pxValue / 16
