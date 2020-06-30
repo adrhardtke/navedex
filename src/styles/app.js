@@ -14,6 +14,7 @@ export default createGlobalStyle`
 
     body {
         background: #fff;
+        color: #212121;
         font-smooth: always;
         -webkit-font-smoothing: antialiased !important;
     }
@@ -29,9 +30,12 @@ export default createGlobalStyle`
         outline: none;
     }
 
+    h1, h2, h3, h4, h5, h6, p {
+        font-family: 'Montserrat', sans-serif;
+    }
+
     h1 {
         font-size: 2.5em;
-        font-family: 'Montserrat', sans-serif;
         font-weight: 600;
     }
 

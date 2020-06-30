@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom'
 import { AiOutlineLoading3Quarters as LoadingIcon } from 'react-icons/ai'
 
@@ -15,6 +15,7 @@ import { create } from '../../services/navers'
 
 function Create() {
     const [ loading, setLoading ] = useState(false)
+    const [ error, setError ] = useState(false)
     
     const [ name, setName ] = useState('')
     const [ job_role, setJob_role ] = useState('')
@@ -24,6 +25,10 @@ function Create() {
     const [ url, setUrl ] = useState('')
 
     const history = useHistory()
+
+    useEffect( () => {
+        setError(false)
+    }, [name, job_role, admission_date, birthdate, project, url])
 
     const reverseDate = date => {
         const reverse = date.split('-').reverse().join('/')
@@ -43,10 +48,12 @@ function Create() {
             url,
         }
 
-        const response = await create(naver)
-
-        if(response){
+        try {
+            const response = await create(naver)
             history.push('/dashboard')
+        } catch(e){
+            setLoading(false)
+            setError(true)
         }
     }
 
@@ -129,6 +136,9 @@ function Create() {
                     </ButtonText>
                 </Button>
             </Form>
+                {
+                    error && <p className="error">Ops! Algo deu errado, verifique os campos novamente.</p>
+                }
       </Content>
   )
 }

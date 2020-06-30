@@ -14,11 +14,18 @@ export const Content = styled.div`
     margin-top: 2.5em;
 `
 
-export const NaversList = styled.ul``
+export const NaversList = styled.ul`
+    display: block;
+    margin: 1.5em auto;
+
+    li {
+        display: inline-block;
+        margin-right: .5em;
+        margin-bottom: 2em;
+    }
+`
 
 export const NaversContent = styled.div`
-    margin-top: 1.5em;
-
     .notification {
         p {
             color: rgba(0,0,0,.5);
