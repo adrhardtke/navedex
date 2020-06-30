@@ -26,6 +26,13 @@ export default createGlobalStyle`
 
     button {
         cursor: pointer;
+        outline: none;
+    }
+
+    h1 {
+        font-size: 2.5em;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 600;
     }
 
 `
