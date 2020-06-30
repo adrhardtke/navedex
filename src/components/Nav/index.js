@@ -8,10 +8,15 @@ import { Navbar } from './styles'
 function Nav() {
     const history = useHistory();
 
+    const logout = () => {
+      localStorage.removeItem('TOKEN')
+      history.push('/')
+    }
+
   return (
       <Navbar>
         <Logo />
-        <button type="button">Sair</button>
+        <button type="button" onClick={logout}>Sair</button>
       </Navbar>
   )
 }

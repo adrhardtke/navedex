@@ -31,17 +31,6 @@ export const Form = styled.form`
     }
 `
 
-export const SubtmitButton = styled.button.attrs({
-    type: 'submit'
-})`
-    width: 100%;
-    background: #212121;
-    color: #fff;
-    border:none;
-    outline: none;
-    padding: .8em;
-`
-
 export const LoginBox = styled.div`
     display: flex;
     flex-direction: column;

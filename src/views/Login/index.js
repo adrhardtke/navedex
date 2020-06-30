@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom'
 
+// Components
+import Button from '../../components/Button'
+
 // Assets & Styles
 import Logo from '../../assets/images/logo'
-import { Container, Form, LoginBox, SubtmitButton } from './styles'
+import { Container, Form, LoginBox } from './styles'
 
 // services
 import { login } from '../../services/auth'
@@ -24,9 +27,10 @@ function Login() {
   const handleSubmit = async e => {
     e.preventDefault()
     const response = await login(email, password)
-
+  
     if(response){
       localStorage.setItem('TOKEN', response.data.token)
+      history.push('/dashboard')
     }
   }
 
@@ -55,9 +59,9 @@ function Login() {
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
-              <SubtmitButton>
+              <Button type="submit" width="100%">
                   Entrar
-              </SubtmitButton>
+              </Button>
           </Form>
         </LoginBox>
       </Container>

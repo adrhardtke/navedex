@@ -1,10 +1,59 @@
-import React from 'react'
-import { Content } from './styles'
+import React, { useEffect, useState } from 'react'
+import { Content, Header, NaversList, NaversContent } from './styles'
+
+import { AiOutlineLoading3Quarters as LoadingIcon } from 'react-icons/ai'
+
+import Card from '../../components/Card'
+
+// Services
+import { index } from '../../services/navers'
+import Button from '../../components/Button'
 
 function Dashboard() {
+  const [navers, setNavers] = useState([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect( ()=> {
+    async function requestApi(){
+      const response = await index()
+      setNavers(response.data)
+      setLoading(false)
+    }
+    requestApi()
+  })
+
   return (
       <Content>
-        <h1>Navers</h1>
+        <Header>
+          <h1>Navers</h1>
+          <Button type="button">Adicionar Naver</Button>
+        </Header>
+        <NaversContent>
+          {
+            navers.length === 0 ? (
+              <div className="notification">
+                {
+                  loading ? <LoadingIcon color="#212121" size={24}  /> : <p>Ops! Nenhum Naver cadastrado :(</p>
+                }     
+              </div>
+            ) : (
+              <NaversList>
+                {
+                  navers.map( naver => {
+                    return (
+                      <Card
+                        imageUrl={naver.url}
+                        name={naver.name}
+                        skill={naver.job_role}
+                      />
+                    )
+                  }
+                  )
+                }
+              </NaversList>
+            )
+          }
+        </NaversContent>
       </Content>
   )
 }
