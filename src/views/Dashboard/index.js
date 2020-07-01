@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { AiOutlineLoading3Quarters as LoadingIcon } from 'react-icons/ai'
 import { useHistory } from 'react-router-dom'
 import Visualize from '../Visualize'
+import moment from 'moment'
+import 'moment/locale/pt-br'
 
 // Modal
 import 'react-responsive-modal/styles.css';
@@ -25,14 +27,19 @@ function Dashboard() {
   const history = useHistory()
 
   useEffect( ()=> {
+    moment.locale('pt-br') 
     async function requestApi(){
       const response = await index()
       setNavers(response.data)
       setLoading(false)
-      setSelectNaver(navers[0])
-      setOpen(true)
     }
     requestApi()
+  },[])
+
+  useEffect(()=> {
+    navers.forEach(async naver => naver.birthdate= await moment(naver.birthdate, "YYYY-MM-DD").format("LL"))
+    navers.forEach(async naver => naver.admission_date= await moment(naver.admission_date, "YYYY-MM-DD").format("LL"))
+
   },[navers])
 
   const handleOpen = (naver) => {

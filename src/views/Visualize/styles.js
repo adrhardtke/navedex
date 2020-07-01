@@ -9,11 +9,23 @@ export const Container = styled.div`
 
     .data {
         margin: 2em;
+        margin-top: 3em;
+        margin-right: 2em;
 
         h4 {
             font-size: 1.5em;
             font-weight: 600;
             margin-bottom: .5em;
+        }
+
+        h5 {
+            margin-top:1.5em;
+            font-size: 1em;
+            font-weight: 600;
+        }
+
+        p {
+            margin-top: .5em;
         }
     }
 `
