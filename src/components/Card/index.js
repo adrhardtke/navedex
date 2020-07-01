@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 
 // Icons
 import { FaTrash } from 'react-icons/fa'
@@ -8,16 +9,17 @@ import { AiOutlineEye } from 'react-icons/ai'
 // Assets & Styles
 import { CardContent, Image } from './styles';
 
-function Card({imageUrl, name, naver, skill, onEdit, onDelete, onOpen}) {
+function Card({imageUrl, name, naverId, skill, onDelete, onOpen}) {
     return (
         <CardContent>
             <Image src={imageUrl} className="image" />
             <h2>{name}</h2>
             <p>{skill}</p>
             <div className="buttons">
-                <button type="button" onClick={onEdit}>
+                <Link to={`/edit/${naverId}`}>
                     <MdModeEdit size={24} color="#212121" />
-                </button>
+                </Link>
+
                 <button type="button" onClick={onDelete}>
                     <FaTrash size={24} color="#212121" />
                 </button>

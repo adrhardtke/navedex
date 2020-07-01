@@ -70,7 +70,7 @@ function Dashboard() {
                         imageUrl={naver.url}
                         name={naver.name}
                         skill={naver.job_role}
-                        onEdit={() => {}}
+                        naverId={naver.id}
                         onDelete={() => {}}
                         onOpen={() => handleOpen(naver)}
                       />

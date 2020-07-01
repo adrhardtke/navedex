@@ -1,6 +1,6 @@
 import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
-import { Login, Dashboard, Create } from './views'
+import { Login, Dashboard, Create, Edit } from './views'
 import Layout from './views/Layout'
 
 import RouteWithLayout from './components/RouteWithLayout'
@@ -19,6 +19,11 @@ function Routes(){
                     component={Create}
                     layout={Layout}
                     path='/create'
+                />
+                <RouteWithLayout
+                    component={Edit}
+                    layout={Layout}
+                    path='/edit/:id'
                 />
             </Switch>
         </BrowserRouter>

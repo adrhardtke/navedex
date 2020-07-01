@@ -15,8 +15,6 @@ export const Content = styled.div`
 `
 
 export const NaversList = styled.ul`
-    display: block;
-    margin: 1.5em auto;
 
     li {
         display: inline-block;

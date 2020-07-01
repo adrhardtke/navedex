@@ -23,6 +23,7 @@ export default createGlobalStyle`
         color: #222;
         font-size: 14px;
         font-family: 'Roboto', Arial, Helvetica, sans-serif;
+        overflow-y: auto
     }
 
     button {
