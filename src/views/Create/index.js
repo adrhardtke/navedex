@@ -7,6 +7,7 @@ import Rollback from '../../components/Rollback'
 import InputWithLabel from '../../components/InputWithLabel'
 import Button from '../../components/Button'
 
+// Modal
 import 'react-responsive-modal/styles.css';
 import { Modal } from 'react-responsive-modal';
 

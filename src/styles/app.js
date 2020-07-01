@@ -52,4 +52,16 @@ export default createGlobalStyle`
         }
     }
 
+    .modal-no-margin {
+        margin:0;
+    }
+
+    .modal-large {
+        min-width: 850px;
+    }
+
+    .react-responsive-modal-modal {
+        padding: 0;
+    }
+
 `

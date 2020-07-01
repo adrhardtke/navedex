@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { AiOutlineLoading3Quarters as LoadingIcon } from 'react-icons/ai'
 import { useHistory } from 'react-router-dom'
+import Visualize from '../Visualize'
+
+// Modal
+import 'react-responsive-modal/styles.css';
+import { Modal } from 'react-responsive-modal';
 
 // Components
 import Card from '../../components/Card'
@@ -13,8 +18,10 @@ import { Content, Header, NaversList, NaversContent } from './styles'
 import { index } from '../../services/navers'
 
 function Dashboard() {
+  const [open, setOpen] = useState(false)
   const [navers, setNavers] = useState([])
   const [loading, setLoading] = useState(true)
+  const [selectNaver, setSelectNaver] = useState()
   const history = useHistory()
 
   useEffect( ()=> {
@@ -22,9 +29,16 @@ function Dashboard() {
       const response = await index()
       setNavers(response.data)
       setLoading(false)
+      setSelectNaver(navers[0])
+      setOpen(true)
     }
     requestApi()
-  })
+  },[navers])
+
+  const handleOpen = (naver) => {
+    setOpen(true)
+    setSelectNaver(naver)
+  }
 
   return (
       <Content>
@@ -49,15 +63,22 @@ function Dashboard() {
                         imageUrl={naver.url}
                         name={naver.name}
                         skill={naver.job_role}
+                        onEdit={() => {}}
+                        onDelete={() => {}}
+                        onOpen={() => handleOpen(naver)}
                       />
                     )
-                  }
-                  )
+                  })
                 }
               </NaversList>
             )
           }
         </NaversContent>
+        <Modal open={selectNaver !== undefined && open} onClose={() => setOpen(false)} center classNames="modal">
+          <div className="modal-content modal-no-margin modal-large">
+            {selectNaver && <Visualize naver={selectNaver} />}
+          </div>
+        </Modal>
       </Content>
   )
 }
