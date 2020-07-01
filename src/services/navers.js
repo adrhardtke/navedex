@@ -26,3 +26,8 @@ export const update = async (naverId, naver) => {
     const response = await api.put(`/navers/${naverId}`, naver, barearToken())
     return response
 }
+
+export const remove = async naverId => {
+    const response = await api.delete(`/navers/${naverId}`, barearToken())
+    return response
+}

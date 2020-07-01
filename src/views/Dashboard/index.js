@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { AiOutlineLoading3Quarters as LoadingIcon } from 'react-icons/ai'
 import { useHistory } from 'react-router-dom'
 import Visualize from '../Visualize'
+import Delete from '../Delete'
 import moment from 'moment'
 import 'moment/locale/pt-br'
 
@@ -14,16 +15,18 @@ import Card from '../../components/Card'
 import Button from '../../components/Button'
 
 // Assets & Styles
-import { Content, Header, NaversList, NaversContent } from './styles'
+import { Content, DeleteContainer, Header, NaversList, NaversContent } from './styles'
 
 // Services
-import { index } from '../../services/navers'
+import { index, remove } from '../../services/navers'
 
 function Dashboard() {
   const [open, setOpen] = useState(false)
+  const [openDelete, setOpenDelete] = useState(false)
+  const [confirmDelete, setConfirmDelete] = useState(false)
   const [navers, setNavers] = useState([])
   const [loading, setLoading] = useState(true)
-  const [selectNaver, setSelectNaver] = useState()
+  const [selectNaver, setSelectNaver] = useState({})
   const history = useHistory()
   
   useEffect( ()=> {
@@ -42,9 +45,28 @@ function Dashboard() {
 
   },[navers])
 
+
   const handleOpen = (naver) => {
     setOpen(true)
     setSelectNaver(naver)
+  }
+
+  const handleDelete = (naver) => {
+    setOpenDelete(true)
+    setSelectNaver(naver)
+  }
+
+  const handleConfirmDelete = async () => {
+    await remove(selectNaver.id)
+    const deleteNaver = navers.find(naver => naver.id === selectNaver.id) 
+    const newNavers = navers.filter(naver => naver.id !== deleteNaver.id)
+    setNavers(newNavers)
+    setConfirmDelete(true)
+  }
+
+  const closeDeleteModal = () => {
+    setOpenDelete(false)
+    setConfirmDelete(false)
   }
 
   return (
@@ -71,7 +93,7 @@ function Dashboard() {
                         name={naver.name}
                         skill={naver.job_role}
                         naverId={naver.id}
-                        onDelete={() => {}}
+                        onDelete={() =>handleDelete(naver)}
                         onOpen={() => handleOpen(naver)}
                       />
                     )
@@ -81,9 +103,34 @@ function Dashboard() {
             )
           }
         </NaversContent>
+
+        {/* View Container */}
         <Modal open={selectNaver !== undefined && open} onClose={() => setOpen(false)} center classNames="modal">
           <div className="modal-content modal-no-margin modal-large">
             {selectNaver && <Visualize naver={selectNaver} />}
+          </div>
+        </Modal>
+
+        {/* Delete Container */}
+        <Modal open={openDelete} onClose={closeDeleteModal} center classNames="modal">
+          <div className="modal-content">
+            <DeleteContainer>
+                { !confirmDelete ? (
+                  <>
+                    <h5>Excluir Naver</h5>
+                    <p>Tem certeza que deseja excluir {selectNaver.name}?</p>
+                    <div className="buttons">
+                        <button type="button" onClick={() => setOpenDelete(false)}>Cancelar</button>
+                        <button type="button" onClick={handleConfirmDelete}>Excluir</button>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <h5>Naver excluído</h5>
+                    <p>Naver excluído com sucesso!</p>
+                  </>
+                )}
+            </DeleteContainer>
           </div>
         </Modal>
       </Content>

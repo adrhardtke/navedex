@@ -49,3 +49,33 @@ export const Header = styled.header`
     align-items: center;
 `
 
+export const DeleteContainer = styled.div`
+     h5 {
+        font-size: 1.5em;
+        font-weight: 600;
+    }
+
+    .buttons {
+        float: right;
+        margin: 1.5em 0;
+
+        button {
+            background: transparent;
+            border: 1px solid #212121;
+            padding: .5em 1em;
+            width: 180px;
+            height: 40px;
+
+            &:first-child {       
+                margin-right: 1.5em;
+                margin-bottom: 1.5em;
+            }
+
+            & + button {
+                background: #212121;
+                color: #fff;
+            }
+        }
+    }
+`
+

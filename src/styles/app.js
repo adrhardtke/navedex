@@ -48,7 +48,7 @@ export default createGlobalStyle`
 
     .modal-content {
         margin: 2em;
-        min-width: 600px;
+        /* min-width: 600px; */
 
         h4 {
             font-size: 1.5em;
@@ -64,7 +64,7 @@ export default createGlobalStyle`
     }
 
     .modal-large {
-        min-width: 850px;
+        /* min-width: 850px; */
     }
 
     .react-responsive-modal-modal {
