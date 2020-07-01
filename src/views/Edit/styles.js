@@ -24,11 +24,7 @@ export const ButtonText = styled.div`
 export const Content = styled.div`
     max-width: 600px;
     margin: 0 auto;
-
-    .error {
-        color:red;
-        margin-top: .5em;
-    }
+    
 `
 
 export const Form = styled.form`

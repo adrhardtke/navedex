@@ -15,9 +15,12 @@ export const Content = styled.div`
 `
 
 export const NaversList = styled.ul`
-
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 2em;
     li {
-        display: inline-block;
+        /* display: inline-block; */
         margin-right: .5em;
         margin-bottom: 2em;
     }

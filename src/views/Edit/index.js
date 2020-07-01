@@ -59,8 +59,8 @@ function Edit({match}) {
     }
      
     const onCloseModal = () => {
-       setOpen(false)
-       history.push('/dashboard')
+       setOpen(false)  
+       history.replace('/dashboard')
     }
 
     const handleSubmit = async e => {

@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, {keyframes} from 'styled-components'
 import { pxToEm } from '../../helpers'
 
 export const Container = styled.div`
@@ -29,6 +29,10 @@ export const Form = styled.form`
             padding: .5em;
         }
     }
+
+    .error {
+        margin-top: 0;
+    }
 `
 
 export const LoginBox = styled.div`
@@ -41,5 +45,27 @@ export const LoginBox = styled.div`
 
     svg {
         margin-bottom: ${pxToEm(40)}em;
+    }
+`
+
+const rotate = keyframes`
+    from {
+        transform:rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+`
+
+export const ButtonText = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 2em;
+
+    svg {
+        animation: ${rotate} 1s linear infinite;
+        margin-bottom: 0 !important;
     }
 `

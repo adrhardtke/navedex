@@ -9,7 +9,8 @@ export default createGlobalStyle`
     }
 
     html, body, #root {
-        min-height: 100%;
+        min-height: 100vh;
+        overflow: auto;
     }
 
     body {
@@ -23,7 +24,7 @@ export default createGlobalStyle`
         color: #222;
         font-size: 14px;
         font-family: 'Roboto', Arial, Helvetica, sans-serif;
-        overflow-y: auto
+        /* overflow-y: auto */
     }
 
     button {
@@ -38,6 +39,11 @@ export default createGlobalStyle`
     h1 {
         font-size: 2.5em;
         font-weight: 600;
+    }
+    
+    .error {
+        color:red;
+        margin: .5em 0;
     }
 
     .modal-content {
