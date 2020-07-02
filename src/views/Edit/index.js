@@ -47,7 +47,7 @@ function Edit({match}) {
             setUrl(response.data.url)
         }
         requestApi()
-    },[birthdate, match.params.id])
+    },[match.params.id])
 
     const reverseDate = date => {
         const reverse = date.split('-').reverse().join('/')
