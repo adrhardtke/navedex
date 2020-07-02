@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { AiOutlineLoading3Quarters as LoadingIcon } from 'react-icons/ai'
 import { useHistory } from 'react-router-dom'
-import Visualize from '../Visualize'
-import Delete from '../Delete'
 import moment from 'moment'
 import 'moment/locale/pt-br'
 
@@ -15,13 +14,17 @@ import Card from '../../components/Card'
 import Button from '../../components/Button'
 
 // Assets & Styles
-import { Content, DeleteContainer, Header, NaversList, NaversContent } from './styles'
+import { Content, DeleteContainer, Header, Image, NaversList, NaversContent, ViewContainer } from './styles'
+
+// Icons
+import { FaTrash } from 'react-icons/fa'
+import { MdModeEdit } from 'react-icons/md'
 
 // Services
 import { index, remove } from '../../services/navers'
 
 function Dashboard() {
-  const [open, setOpen] = useState(false)
+  const [openView, setOpenView] = useState(false)
   const [openDelete, setOpenDelete] = useState(false)
   const [confirmDelete, setConfirmDelete] = useState(false)
   const [navers, setNavers] = useState([])
@@ -33,7 +36,7 @@ function Dashboard() {
     moment.locale('pt-br') 
     async function requestApi(){
       const response = await index()
-      setNavers(response.data)
+      setNavers(response.data.reverse())
       setLoading(false)
     }
     requestApi()
@@ -47,11 +50,12 @@ function Dashboard() {
 
 
   const handleOpen = (naver) => {
-    setOpen(true)
+    setOpenView(true)
     setSelectNaver(naver)
   }
 
   const handleDelete = (naver) => {
+    setOpenView(false)
     setOpenDelete(true)
     setSelectNaver(naver)
   }
@@ -65,8 +69,8 @@ function Dashboard() {
   }
 
   const closeDeleteModal = () => {
-    setOpenDelete(false)
     setConfirmDelete(false)
+    setOpenDelete(false)
   }
 
   return (
@@ -105,9 +109,32 @@ function Dashboard() {
         </NaversContent>
 
         {/* View Container */}
-        <Modal open={selectNaver !== undefined && open} onClose={() => setOpen(false)} center classNames="modal">
+        <Modal open={openView} onClose={() => setOpenView(false)} center classNames="modal">
           <div className="modal-content modal-no-margin modal-large">
-            {selectNaver && <Visualize naver={selectNaver} />}
+            <ViewContainer>
+              <Image src={selectNaver.url} />
+              <div className="data">
+                  <h4>{selectNaver.name}</h4>
+                  <p>{selectNaver.job_role}</p>
+                  <h5>Idade</h5>
+                  <p>{selectNaver.birthdate}</p>
+                  <h5>Tempo de empresa</h5>
+                  <p>{selectNaver.admission_date}</p>
+                  <h5>Projetos que participou</h5>
+                  <p>{selectNaver.project}</p>
+
+                  <div className="buttons">
+                      <Link to={`/edit/${selectNaver.id}`}>
+                          <MdModeEdit size={24} color="#212121" />
+                      </Link>
+
+                      <button type="button">
+                          <FaTrash size={24} onClick={() => handleDelete(selectNaver)} color="#212121" />
+                      </button>
+                  </div>
+              </div>
+              
+            </ViewContainer>
           </div>
         </Modal>
 

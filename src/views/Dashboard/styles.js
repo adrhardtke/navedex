@@ -1,4 +1,5 @@
 import styled, {keyframes} from 'styled-components'
+import ProfilePicture from '../../assets/images/profile-picture.png'
 
 const rotate = keyframes`
     from {
@@ -79,3 +80,49 @@ export const DeleteContainer = styled.div`
     }
 `
 
+export const ViewContainer = styled.div`
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    /* max-height: 500px; */
+    max-width: 1000px;
+
+    .data {
+        margin: 2em;
+        margin-top: 3em;
+        margin-right: 2em;
+
+        h4 {
+            font-size: 1.5em;
+            font-weight: 600;
+            margin-bottom: .5em;
+        }
+
+        h5 {
+            margin-top:1.5em;
+            font-size: 1em;
+            font-weight: 600;
+        }
+
+        p {
+            margin-top: .5em;
+        }
+        
+        .buttons {
+            button {
+                background: transparent;
+                border:none;
+                margin-top: 1.5em;
+            } 
+            
+            a:first-child {
+                margin-right: 1em;
+            }
+        }
+    }
+`
+
+export const Image = styled.div`
+    background: url(${props => props.src || ProfilePicture}) no-repeat center;
+    background-size: cover;
+    width: 100%;
+`

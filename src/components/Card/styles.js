@@ -13,12 +13,16 @@ export const CardContent = styled.li`
     .buttons {
         margin-top: .5em;
 
+        a:first-child {
+            margin-right: 1em;
+        }
+
         button {
             background: transparent;
             border:none;
 
             & + button {
-                margin-left: .5em;
+                margin-left: 1em;
             }
         }
     }
