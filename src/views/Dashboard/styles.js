@@ -20,6 +20,13 @@ export const NaversList = styled.ul`
     flex-direction: row;
     flex-wrap: wrap;
     margin-top: 2em;
+
+    @media(max-width: 630px) {
+        & {
+            justify-content: center;
+        }
+    }
+
     li {
         /* display: inline-block; */
         margin-right: .5em;
