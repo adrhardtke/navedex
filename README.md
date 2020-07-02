@@ -1,10 +1,10 @@
 ## Navedex
 
-![Navedex](https://user-images.githubusercontent.com/34072478/86304770-4142f200-bbe6-11ea-95c0-6863a865349b.jpg)
-
 <p align="center">
   <img src="https://user-images.githubusercontent.com/34072478/86304770-4142f200-bbe6-11ea-95c0-6863a865349b.jpg">
 </p>
+
+[Acesse o sistema clicando aqui](https://reactjs.org/).
 
 O sistema consiste em uma web app para visualização e criação dos navers, possuindo informações como: nomes, idades, cargos, tempo de empresa e projetos que participou.
 
@@ -12,6 +12,7 @@ Será um diferencial realizar o desenvolvimento usando React, pois é a bibliote
 
 ### `Observações`
 
-**Para realizar o login no sistema utilize as seguintes credênciais:**
+**Para realizar o login no sistema utilize as seguintes credenciais:**
 - **E-mail:** mustafao@nave.rs
 - **Senha:** dev*12345
+- [Link para o projeto](https://reactjs.org/).
