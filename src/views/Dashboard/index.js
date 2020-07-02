@@ -29,6 +29,7 @@ function Dashboard() {
   const [confirmDelete, setConfirmDelete] = useState(false)
   const [navers, setNavers] = useState([])
   const [loading, setLoading] = useState(true)
+  const [loadingDelete, setLoadingDelete] = useState(false)
   const [selectNaver, setSelectNaver] = useState({})
   const history = useHistory()
   
@@ -61,11 +62,13 @@ function Dashboard() {
   }
 
   const handleConfirmDelete = async () => {
+    setLoadingDelete(true)
     await remove(selectNaver.id)
     const deleteNaver = navers.find(naver => naver.id === selectNaver.id) 
     const newNavers = navers.filter(naver => naver.id !== deleteNaver.id)
     setNavers(newNavers)
     setConfirmDelete(true)
+    setLoadingDelete(false)
   }
 
   const closeDeleteModal = () => {
@@ -148,7 +151,15 @@ function Dashboard() {
                     <p>Tem certeza que deseja excluir {selectNaver.name}?</p>
                     <div className="buttons">
                         <button type="button" onClick={() => setOpenDelete(false)}>Cancelar</button>
-                        <button type="button" onClick={handleConfirmDelete}>Excluir</button>
+                        <button type="button" onClick={handleConfirmDelete}>
+                            { 
+                                loadingDelete ? (
+                                    <LoadingIcon color="#fff" />
+                                ) : (
+                                    <span>Excluir</span>
+                                )
+                            }
+                        </button>
                     </div>
                   </>
                 ) : (

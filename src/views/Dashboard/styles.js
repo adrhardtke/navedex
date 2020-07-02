@@ -67,6 +67,10 @@ export const DeleteContainer = styled.div`
             width: 180px;
             height: 40px;
 
+            svg {
+                animation: ${rotate} 1s linear infinite;
+            }
+
             &:first-child {       
                 margin-right: 1.5em;
                 margin-bottom: 1.5em;
